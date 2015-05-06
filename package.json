@@ -1,17 +1,6 @@
 {
-  "name": "gpk_checkin",
-  "version": "0.0.1",
-  "main": "index.html",
-  "nodejs": true,
-  "window": {
-    "icon": "icon.png",
-    "toolbar": true,
-    "resizable": true,
-    "show_in_taskbar": true,
-    "frame": true
-  },
-
-  // gulp dep
+  "name": "mygulp",
+  "version": '1.0',
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.2.0",
