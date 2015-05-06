@@ -2,6 +2,16 @@
   "name": "gpk_checkin",
   "version": "0.0.1",
   "main": "index.html",
+  "nodejs": true,
+  "window": {
+    "icon": "icon.png",
+    "toolbar": true,
+    "resizable": true,
+    "show_in_taskbar": true,
+    "frame": true
+  },
+
+  // gulp dep
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.2.0",
@@ -9,7 +19,6 @@
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.5.2",
     "gulp-imagemin": "^2.2.1",
-    "gulp-jshint": "^1.10.0",
     "gulp-livereload": "^3.8.0",
     "gulp-minify-css": "^1.1.1",
     "gulp-notify": "^2.2.0",
