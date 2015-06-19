@@ -9,33 +9,45 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
+    react = require('gulp-react'),
     livereload = require('gulp-livereload');
 
 gulp.task('styles', function() {
-  return gulp.src('src/css/main.scss')
-    .pipe(sass({ style: 'expanded', }))
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(gulp.dest('dist/css'))
-    .pipe(rename({ suffix: '.min' }))
+  return gulp.src('src/css/**/*.scss')
+    .pipe(concat('main.scss'))
+    .pipe(sass({ style: 'expanded'}))
+    .on('error', notify.onError('Error: <%= error.message %>'))
+    .pipe(gulp.dest('dist/css/'))
     .pipe(minifycss())
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest('dist/css/'))
     .pipe(notify({ message: 'Styles task complete' }));
 });
 
+gulp.task('react', function () {
+  return gulp.src('src/jsx/**/*.jsx')
+    .pipe(react())
+    .on('error', notify.onError('Error: <%= error.message %>'))
+    .pipe(gulp.dest('dist/jsx/'));
+});
+
 gulp.task('scripts', function() {
-  return gulp.src('src/js/**/*.js')
+  return gulp.src([
+      // TODO: put you script file to here
+      'src/js/app.js'
+    ])
     .pipe(concat('main.js'))
-    .pipe(gulp.dest('dist/js'))
+    .pipe(gulp.dest('dist/js/'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(gulp.dest('dist/js'))
+    .on('error', notify.onError('Error: <%= error.message %>'))
+    .pipe(gulp.dest('dist/js/'))
     .pipe(notify({ message: 'Scripts task complete' }));
 });
 
 gulp.task('images', function() {
   return gulp.src('src/images/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-    .pipe(gulp.dest('dist/images'))
+    .pipe(gulp.dest('dist/images/'))
     .pipe(notify({ message: 'Images task complete' }));
 });
 
